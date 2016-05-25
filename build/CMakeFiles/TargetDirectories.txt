@@ -1,0 +1,10 @@
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/CMakeFiles/edit_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/CMakeFiles/rebuild_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/external/glfw-3.0.3/CMakeFiles/edit_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/external/glfw-3.0.3/CMakeFiles/rebuild_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/external/glfw-3.0.3/src/CMakeFiles/rebuild_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/external/glfw-3.0.3/src/CMakeFiles/edit_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/external/glfw-3.0.3/src/CMakeFiles/glfw.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/source/CMakeFiles/edit_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/source/CMakeFiles/rebuild_cache.dir
+/home/lucas/Programmiersprachen/programmiersprachen-aufgabenblatt-4/build/source/CMakeFiles/tests.dir

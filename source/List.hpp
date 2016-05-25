@@ -26,7 +26,7 @@ struct ListIterator{
 };
 
 template <typename T>
-struct List Const Iterat or{
+struct ListConstIterator{
 	friend class List <T>;
 	public:
 	// not implemented yet
@@ -38,15 +38,96 @@ template <typename T>
 class List{
 public:
 	List():
-		m_first(nullptr),
-		m_last(nullptr) {}
+		m_size{0},
+		m_first{nullptr},
+		m_last{nullptr} {}
 
-	List(List const& a):
-		m_first(nullptr),
-		m_last(nullptr) {}
+	/*List(List const& a):
+		m_first{nullptr},
+		m_last{nullptr},
+		m_size{} {
+		}
+	*/	
+	std::size_t size() const{
+		return m_size;
+	}
 
 	bool empty() const{
+		return m_size==0;
+	}
 
+	void push_front(T const& a){
+		if (empty()){
+			ListNode<T>* l1 = new ListNode<T>(a, nullptr, nullptr);
+			m_first = l1;
+			m_last = l1;
+		}
+
+		else {
+			ListNode<T>* l1 = new ListNode<T>(a, nullptr, m_first);
+			m_first = l1;		
+		}
+		m_size +=1;
+	}
+
+	void push_back(T const& a){
+		if (empty()){
+			ListNode<T>* l1 = new ListNode<T>(a, nullptr, nullptr);
+			m_first = l1;
+			m_last = l1;
+		}
+
+		else {
+			ListNode<T>* l3 = new ListNode<T>(a, m_last, nullptr);
+			m_last = l3;		
+		}
+		m_size +=1;
+	}
+
+	void pop_front(){
+		if (m_size>1){
+			auto tmp = m_first->m_next;
+			delete m_first;
+			tmp->m_prev = nullptr;
+			m_first=tmp;
+			m_size= m_size -1;
+		}
+		if(m_size == 1){
+			delete m_first;
+			m_first=nullptr;
+			m_last=nullptr;
+			m_size = m_size - 1;
+		}
+	}
+
+	void pop_back(){
+		if (m_size>1){
+			auto tmp = m_last->m_prev;
+			delete m_last;
+			tmp->m_next = nullptr;
+			m_last=tmp;
+			m_size= m_size -1;
+		}
+		if(m_size == 1){
+			delete m_first;
+			m_first=nullptr;
+			m_last=nullptr;
+			m_size = m_size - 1;
+		}
+	}
+
+	T& front() const{
+		return m_first->m_value;
+	}
+
+	T& back() const{
+		return m_last->m_value;
+	}
+
+	void clear(){
+		while (m_size != 0){
+			pop_front();
+		}
 	}
 
 	typedef T value_type;
