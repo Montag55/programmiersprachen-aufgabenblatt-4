@@ -63,6 +63,26 @@ TEST_CASE("should be empty after clearing", "[modifiers]"){
 	REQUIRE(list.size()==0);
 }
 
+TEST_CASE("should be an empty range after default construction", "[iterators]"){
+	List<int> list;
+	auto b = list.begin();
+	auto e = list.end();
+	REQUIRE(b==e);
+}
+
+TEST_CASE("provide acces to the first element with begin", "[iterators]"){
+	List<int> list;
+	list.push_front(42);
+	REQUIRE(42 == *list.begin());
+}
+
+TEST_CASE("should be empty after clearing", "[iterators]"){
+	List<int>list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+
 
 int main(int argc, char *argv[])
 {
