@@ -38,9 +38,9 @@ TEST_CASE("add an element with pop_front", "[modifiers]"){
 	list.push_back(1);
 	list.push_back(2);
 	list.push_back(3);
-	list.push_front(4);					//ich brauch mindestens 1x pop_front,
-	list.pop_front();					// sonst segmantation limit überschritten...why?
-	REQUIRE(1 == list.front());
+	list.push_back(4);					
+	list.pop_front();					
+	REQUIRE(2 == list.front());
 }
 
 TEST_CASE("add an element with pop_back", "[modifiers]"){
@@ -76,14 +76,38 @@ TEST_CASE("provide acces to the first element with begin", "[iterators]"){
 	REQUIRE(42 == *list.begin());
 }
 
-TEST_CASE("should be empty after clearing", "[iterators]"){
-	List<int>list;
-	list.push_front(1);
-	list.push_front(2);
-	list.push_front(3);
-	list.push_front(4);
+TEST_CASE("Operation_Liste_==", "[4.6]"){
+	List<int>list1;
+	List<int>list2;
+	List<int>list3;
+	List<int>list4;
+	list1.push_front(1);
+	list1.push_front(2);
+	list1.push_front(3);
+	list1.push_front(4);
+	list2.push_front(1);
+	list2.push_front(2);
+	list2.push_front(3);
+	list2.push_front(4);
+	REQUIRE(list2 == list1);
+	REQUIRE(list3 == list4);
+}
 
-
+TEST_CASE("Operation_Liste_!=", "[4.6]"){
+	List<int>list1;
+	List<int>list2;
+	List<int>list3;
+	list1.push_front(1);
+	list1.push_front(2);
+	list1.push_front(2);
+	list1.push_front(4);
+	list2.push_front(1);
+	list2.push_front(2);
+	list2.push_front(3);
+	list2.push_front(4);
+	REQUIRE(list2 != list1);
+	REQUIRE(list3 != list1);
+}
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

@@ -28,7 +28,7 @@ struct ListConstIterator{
 
 template <typename T>
 struct ListIterator{
-	typedef ListIterator<T>Self;
+	typedef ListIterator<T> Self;
 	typedef T value_type;
 	typedef T* pointer;
 	typedef T& reference;
@@ -100,14 +100,17 @@ public:
 		m_first{nullptr},
 		m_last{nullptr} {}
 
-	~List(){clear();} //destructor?
+	~List() {
+		clear();
+	}
 
 	std::size_t size() const{
 		return m_size;
+		//return std::distance(begin(), end());
 	}
 
 	bool empty() const{
-		return m_size==0;
+		return size() == 0;
 	}
 
 	void push_front(T const& a){
@@ -141,6 +144,9 @@ public:
 	}
 
 	void pop_front(){
+		if (m_size==0){
+			throw std::out_of_range ("HAHA....NOPE");
+		}
 		if (m_size>1){
 			auto tmp = m_first->m_next;
 			delete m_first;
@@ -157,6 +163,9 @@ public:
 	}
 
 	void pop_back(){
+		if (m_size==0){
+			throw std::out_of_range ("HAHA....NOPE");
+		}
 		if (m_size>1){
 			auto tmp = m_last->m_prev;
 			delete m_last;
@@ -181,21 +190,17 @@ public:
 	}
 
 	void clear(){
-		while (m_size != 0){
+		while (!empty()){
 			pop_front();
 		}
 	}
 
 	iterator begin() const{
-		if (empty())
-			return nullptr;
-		return m_first;
+		return ListIterator<T>(m_first);
 	}
 
 	iterator end() const{
-		if (empty())
-			return nullptr;
-		return m_last;
+		return ListIterator<T>();
 	}
 
 	
@@ -205,5 +210,33 @@ std::size_t m_size = 0;
 ListNode <T>* m_first = nullptr;
 ListNode <T>* m_last = nullptr;
 };
+
+template<typename T>
+bool operator==(List<T> const& xs, List<T> const& ys){
+	ListIterator<T> a = xs.begin();
+	ListIterator<T> b = ys.begin();
+	if (xs.size() == ys.size()){
+		unsigned int c = 0;
+		while(c < xs.size()){
+			if (*a == *b){
+				a++;
+				b++;
+				c++;
+			}
+			else 
+				return false;
+
+		}
+		return true;
+	}	
+	else{
+		return false;	
+	}
+}
+
+template<typename T>
+bool operator!=(List<T> const& xs, List<T> const& ys){
+	return !(xs == ys);
+}
 
 #endif
