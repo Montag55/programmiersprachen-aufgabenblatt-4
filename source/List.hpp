@@ -98,7 +98,16 @@ public:
 	List():
 		m_size{0},
 		m_first{nullptr},
-		m_last{nullptr} {}
+		m_last{nullptr}{}
+
+	List(List const& a):
+		m_size{0},
+		m_first{nullptr},
+		m_last{nullptr}{
+			for (auto i = a.begin(); i != a.end(); ++i){
+				push_back(*i);
+			}
+		}
 
 	~List() {
 		clear();
@@ -225,7 +234,6 @@ bool operator==(List<T> const& xs, List<T> const& ys){
 			}
 			else 
 				return false;
-
 		}
 		return true;
 	}	

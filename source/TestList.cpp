@@ -108,6 +108,17 @@ TEST_CASE("Operation_Liste_!=", "[4.6]"){
 	REQUIRE(list2 != list1);
 	REQUIRE(list3 != list1);
 }
+
+TEST_CASE("copy constructor", "[constructor]"){
+	List<int> list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+	List<int> list2{list};
+	REQUIRE(list == list2);
+}
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
