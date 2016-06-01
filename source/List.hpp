@@ -190,11 +190,19 @@ public:
 		}
 	}
 
-	T& front() const{
+	T const& front() const{
 		return m_first->m_value;
 	}
 
-	T& back() const{
+	T& front() {
+		return m_first->m_value;
+	}
+
+	T const& back() const{
+		return m_last->m_value;
+	}
+
+	T& back() {
 		return m_last->m_value;
 	}
 
@@ -218,6 +226,13 @@ public:
 		pos.m_node->m_prev = element;
 		m_size = m_size +1;
 		return iterator(element);
+	}
+
+	void reverse(){
+		for (auto i = m_first; i != nullptr; i=i->m_prev){
+			std::swap(i->m_prev,i->m_next);
+		}
+		std::swap(m_first, m_last);
 	}
 
 	
@@ -253,6 +268,12 @@ bool operator==(List<T> const& xs, List<T> const& ys){
 template<typename T>
 bool operator!=(List<T> const& xs, List<T> const& ys){
 	return !(xs == ys);
+}
+
+template <typename T>
+List<T> reverse(List<T> list){
+	list.reverse();
+	return list;
 }
 
 #endif

@@ -126,11 +126,30 @@ TEST_CASE("insert", "[operation]"){
 	list.push_front(3);
 	list.push_front(4);
 	list.insert(++list.begin(), 6);
-	
 	REQUIRE(5 == list.size());
 }
 
+TEST_CASE("reverse", "[operation]"){
+	List<int> list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+	list.reverse();
+	REQUIRE( list.front() == 1);
+	REQUIRE( list.back() == 4);
+}
 
+TEST_CASE("frei_reverse", "[operation]"){
+	List<int> list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+	List<int> list2 = reverse(list);
+	REQUIRE( list2.front() == 1);
+	REQUIRE( list2.back() == 4);
+}
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
