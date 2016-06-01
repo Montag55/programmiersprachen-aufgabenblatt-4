@@ -150,6 +150,19 @@ TEST_CASE("frei_reverse", "[operation]"){
 	REQUIRE( list2.front() == 1);
 	REQUIRE( list2.back() == 4);
 }
+
+TEST_CASE("move constructor", "[constructor]"){
+	List<int> list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+	List<int> list2(std::move(list));
+	REQUIRE(0==list.size());
+	REQUIRE(list.empty());
+	REQUIRE(4 == list2.size());
+}
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

@@ -109,6 +109,16 @@ public:
 			}
 		}
 
+	List<T> (List<T> && inlist)
+		: m_size(inlist.m_size),
+		m_first(inlist.m_first),
+		m_last(inlist.m_last)
+	{
+		inlist.m_size = 0;
+		inlist.m_first = nullptr;
+		inlist.m_last = nullptr;
+	}
+
 	~List() {
 		clear();
 	}
