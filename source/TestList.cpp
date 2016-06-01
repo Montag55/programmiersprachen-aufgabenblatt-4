@@ -119,6 +119,18 @@ TEST_CASE("copy constructor", "[constructor]"){
 	REQUIRE(list == list2);
 }
 
+TEST_CASE("insert", "[operation]"){
+	List<int> list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+	list.insert(++list.begin(), 6);
+	
+	REQUIRE(5 == list.size());
+}
+
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

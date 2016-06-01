@@ -13,8 +13,8 @@ struct ListNode{
 	ListNode(): m_value(), m_prev(nullptr), m_next(nullptr) {}
 	ListNode(T const& v, ListNode*prev, ListNode*next): m_value(v), m_prev(prev), m_next(next){}
 	T m_value;
-	ListNode*m_prev;
-	ListNode*m_next;
+	ListNode* m_prev;
+	ListNode* m_next;
 };
 
 template <typename T>
@@ -210,6 +210,14 @@ public:
 
 	iterator end() const{
 		return ListIterator<T>();
+	}
+
+	iterator insert(iterator pos, T const& value){
+		ListNode<T>* element = new ListNode<T>(value, pos.m_node->m_prev, pos.m_node);
+		pos.m_node->m_prev->m_next = element;
+		pos.m_node->m_prev = element;
+		m_size = m_size +1;
+		return iterator(element);
 	}
 
 	
