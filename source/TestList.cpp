@@ -2,6 +2,9 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "List.hpp"
+#include <vector>
+#include <cmath>
+#include <algorithm>
 
 
 
@@ -161,6 +164,33 @@ TEST_CASE("move constructor", "[constructor]"){
 	REQUIRE(0==list.size());
 	REQUIRE(list.empty());
 	REQUIRE(4 == list2.size());
+}
+
+TEST_CASE("vector_copy", "[vec_copy]"){
+	List<int> list;
+	list.push_front(1);
+	list.push_front(2);
+	list.push_front(3);
+	list.push_front(4);
+	std::vector<int> v (list.size());
+	std::copy(std::begin(list), std::end(list), std::begin(v));
+	int i = 4;
+	for (auto it : v){
+		REQUIRE(i == it);
+		i--;
+	}
+}
+
+TEST_CASE("Zuweisungsoperator", "[operator_=]"){
+	List<int> list1;
+	list1.push_front(1);
+	list1.push_front(2);
+	list1.push_front(3);
+	list1.push_front(4);
+	list1.push_front(5);
+	List<int> list2;
+	list2 = list1;
+	REQUIRE(list1 == list2);
 }
 
 int main(int argc, char *argv[])

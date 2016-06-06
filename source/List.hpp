@@ -245,7 +245,17 @@ public:
 		std::swap(m_first, m_last);
 	}
 
-	
+	List<T> operator=(List<T> const& list){
+		empty();
+		unsigned int c = 0;
+		ListIterator<T> a = list.begin();
+		while(c < list.size()){
+			push_back(*a);
+			a++;
+			c++;
+		}
+	return *this;	
+	}
 		
 private:
 std::size_t m_size = 0;
